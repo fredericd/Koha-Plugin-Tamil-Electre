@@ -37,11 +37,9 @@ function pageOpacDetail() {
         }
         if (cod.infos.enabled) {
           const html = info.koha.opac.info;
-          $('#catalogue_detail_biblio').append(`
-            <div class="electre infos">
-                ${html}
-            </div>
-          `);
+          if (html) {
+            $('#catalogue_detail_biblio').append(html);
+          }
         }
       });
     });

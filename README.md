@@ -8,7 +8,7 @@ Electre, image de couverture, quatrième de couverture, etc.
 ## API Electre NG
 
 Ce plugin utilise [l'API Electre NG](https://docs.electre-ng.com). Plus
-précisément, un sous-ensemble de cette API qui s'appelle [Rateau
+précisément, un sous-ensemble de cette API qui s'appelle [Râteau
 000](https://docs.electre-ng.com/1.19.0/electre-API-rateau-00-v1.19.0.html#electre-api). 
 Et plus précisément encore, le service web
 [GET-Notices-by-multiple-EAN](https://docs.electre-ng.com/1.19.0/electre-API-rateau-00-v1.19.0.html#get-notices-by-multiple-ean).
@@ -20,17 +20,21 @@ biographie de l'auteur ou la quatrième de couverture.
 
 **Authentification** — L'accès à l'API Electre NG nécessite un abonnement à ce
 service. Un _nom d'utilisateur_ et un _mot de passe_ sont fournis par Electre.
+C'est ce qui permmet une authentification de type [OAuth
+2.0](https://fr.wikipedia.org/wiki/OAuth) à l'API Electre NG.
 
 **Information** — Les principales informations renvoyées sont les suivantes :
 
-- imageCouverture
-- imagetteCouverture
-- biographie
-- quatriemeDeCouverture
-- tableDesMatieres
-- passagesMedia
-- bandesAnnonces
-- extrait
+- Les URL de la couverture :
+  - imageCouverture
+  - imagetteCouverture
+- Des informations textuelles :
+  - biographie
+  - quatriemeDeCouverture
+  - tableDesMatieres
+  - passagesMedia
+  - bandesAnnonces
+  - extrait
 
 **Service web du plugin** — Le Plugin Electre expose et utilise un service web
 intermédiaire qui présente une version mise en cache sur le serveur Koha des

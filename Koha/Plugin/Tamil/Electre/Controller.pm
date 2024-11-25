@@ -106,8 +106,14 @@ sub notices {
                             my $tt = Template->new();
                             my $template = $pc->{opac}->{detail}->{infos}->{template};
                             my $html = '';
-                            $tt->process(\$template, { electre => $not, conf => $pc }, \$html)
-                                or $html = "Mauvais template : " . $template->error();
+                            my @info_fields = (
+                                'biographie', 'quatriemeDeCouverture', 'tableDesMatieres',
+                                'passagesMedia', 'bandesAnnonces', 'extrait',
+                            );
+                            if (grep { ! $not->{$_} == undef } @info_fields) {
+                                $tt->process(\$template, { electre => $not, conf => $pc }, \$html)
+                                    or $html = "Mauvais template : " . $template->error();
+                            }
                             my $notice = {
                                 electre => $not,
                                 koha => { opac => { info => $html } },

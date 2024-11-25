@@ -43,15 +43,13 @@ my $DEFAULT_OPAC_TEMPLATE = <<EOS;
     border: 1px solid;
     padding: 10px;
   }
-  #electre-toc span {
-    margin-left: 4px;
-    font-size: 80%;
-    font-style: italic;
+  #electre-branding {
+    text-align: right;
   }
   #electre-infos h1 {
     font-transform: uppercase;
     font-size: 120%;
-    color: grey;
+    color: #727272;
   }
 </style>
 <div id="electre-infos">
@@ -83,6 +81,18 @@ my $DEFAULT_OPAC_TEMPLATE = <<EOS;
     <div id="electre-tableDesMatieres">
       <h1>Table des matières</h1>
       <div>[% electre.tableDesMatieres %]</div>
+    </div>
+  [% END %]
+  [% IF electre.passagesMedia %]
+    <div id="electre-passagesMedia">
+      <h1>Passages Média</h1>
+      <div>[% electre.passagesMedia %]</div>
+    </div>
+  [% END %]
+  [% IF electre.bandesAnnonces %]
+    <div id="electre-bandesAnnonces">
+      <h1>Bandes annonces</h1>
+      <div>[% electre.bandesAnnonces %]</div>
     </div>
   [% END %]
 </div>
