@@ -21,6 +21,7 @@ function pageOpacDetail() {
     .done((infos) => {
       Object.keys(infos).forEach(function(isbn) {
         const info = infos[isbn];
+        if (info.notfound) return;
         if (cod.cover.enabled) {
           const url = info.electre[cod.cover.image];
           const target = targetByIsbn[isbn];
@@ -63,6 +64,7 @@ function pageOpacResult() {
       Object.keys(infos).forEach(function(isbn) {
         const info = infos[isbn];
         if (cor.cover.enabled) {
+          if (info.notfound) return;
           const url = info.electre[cor.cover.image];
           const target = targetByIsbn[isbn];
           target.html(`

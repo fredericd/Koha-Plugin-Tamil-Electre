@@ -16,6 +16,7 @@ sub notices {
     my %isbn   = map { $_ => undef } split /,/, $c->validation->param('isbn');
     my $cache  = $plugin->{cache};
 
+    $logger->debug("Controller notices");
     my $ua = Mojo::UserAgent->new;
     $ua = $ua->connect_timeout($pc->{api}->{timeout});
 

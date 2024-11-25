@@ -1,15 +1,19 @@
 [% INCLUDE "$PLUGIN_DIR/head.tt" %]
 
+<style>
+.markdown {
+  font-size: 100%;
+}
+.markdown h2 {
+  margin-top: 20px;
+}
+.markdown img {
+  width: 100%;
+}
+</style>
 <div class="row">
- <h1>Tamil Electre</h1>
-</div>
-
-<div class="row">
- <div class="col-md-6">
-  <p>
-   <b>Tamil Electre</b> est un outil permettant d'exploiter à partir de Koha
-   les services web d'Electre.
-  </p>
+ <div class="col-md-6 markdown">
+  [% markdown %]
  </div>
 </div>
 <div class="col-md-6">
