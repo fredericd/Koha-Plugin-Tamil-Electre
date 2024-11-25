@@ -1,0 +1,18 @@
+[% INCLUDE "$PLUGIN_DIR/head.tt" %]
+
+<div class="row">
+ <h1>Tamil Electre</h1>
+</div>
+
+<div class="row">
+ <div class="col-md-6">
+  <p>
+   <b>Tamil Electre</b> est un outil permettant d'exploiter à partir de Koha
+   les services web d'Electre.
+  </p>
+ </div>
+</div>
+<div class="col-md-6">
+</div>
+
+[% INCLUDE "$PLUGIN_DIR/foot.tt" %]

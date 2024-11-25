@@ -1,0 +1,124 @@
+[% INCLUDE "$PLUGIN_DIR/head.tt" %]
+
+<h1>Configuration de Tamil Electre</h1>
+
+<form method="get">
+
+ <input type="hidden" name="class" value="[% CLASS %]"/>
+ <input type="hidden" name="method" value="[% METHOD %]"/>
+
+ <fieldset class="rows">
+  <legend>API Electre NG</legend>
+  <ol>
+   <li>
+    <label for="api.url">Point d'entrée : </label>
+    <input id="api.url" type="input" name="api.url" size="50" value="[% c.api.url %]" />
+   </li>
+   <li>
+    <label for="api.timeout">Timeout des requêtes : </label>
+    <input id="api.timeout" type="input" name="api.timeout" size="50" value="[% c.api.timeout %]" />
+   </li>
+   <li>
+    <label for="api.login.url">URL du login OAuth : </label>
+    <input id="api.login.url" type="input" name="api.login.url" size="50" value="[% c.api.login.url %]" />
+   </li>
+   <li>
+    <label for="api.login.user">Utilisateur : </label>
+    <input id="api.login.user" type="input" name="api.login.user" size="50" value="[% c.api.login.user %]" />
+   </li>
+   <li>
+    <label for="api.login.password">Mot de passe : </label>
+    <input id="api.login.password" type="input" name="api.login.password" size="50" value="[% c.api.login.password %]" />
+   </li>
+  </ol>
+ </fieldset>
+
+ <fieldset class="rows">
+  <legend>Cache du plugin</legend>
+  <ol>
+   <li>
+    <label for="cache.enabled">Activer : </label>
+    <input id="cache.enabled" type="checkbox" name="cache.enabled" size="15"
+           value="1" [% IF c.cache.enabled == 1 %]checked[% END %] />
+    la mise en cache des infos Electre
+   </li>
+   <li>
+    <label for="cache.expiry">Durée en secondes : </label>
+    <input id="cache.expiry" type="input" name="cache.expiry" size="50" value="[% c.cache.expiry %]" />
+   </li>
+  </ol>
+ </fieldset>
+
+ <fieldset class="rows">
+  <legend>OPAC / Détail </legend>
+  <ol>
+   <li>
+    <label for="opac.detail.enabled">Activer : </label>
+    <input id="opac.detail.enabled" type="checkbox" name="opac.detail.enabled" size="15"
+           value="1" [% IF c.opac.detail.enabled == 1 %]checked[% END %] />
+    l'affichage d'informations Electre
+   </li>
+   <li>
+    <label for="opac.detail.cover.enabled">Activer : </label>
+    <input id="opac.detail.cover.enabled" type="checkbox" name="opac.detail.cover.enabled" size="15"
+           value="1" [% IF c.opac.detail.cover.enabled == 1 %]checked[% END %] />
+    les images de couverture
+   </li>
+   <li>
+    <label for="opac.detail.cover.image">Couverture : </label>
+    <input type="radio" id="opac.detail.cover.image.vignette" name="opac.detail.cover.image"
+           value="imagetteCouverture" [% IF c.opac.detail.cover.image == 'imagetteCouverture' %]checked[% END %] />
+    Vignette
+    <input type="radio" id="opac.detail.cover.image.grande" name="opac.detail.cover.image"
+           value="imageCouverture" [% IF c.opac.detail.cover.image == 'imageCouverture' %]checked[% END %] />
+    Grande
+
+   </li>
+   <li>
+    <label for="opac.detail.infos.enabled">Activer : </label>
+    <input id="opac.detail.infos.enabled" type="checkbox" name="opac.detail.infos.enabled" size="15"
+           value="1" [% IF c.opac.detail.infos.enabled == 1 %]checked[% END %] />
+    l'affichage des infos complémentaire Electre
+   </li>
+   <li>
+    <label for="opac.detail.infos.template">Template : </label>
+    <pre><textarea id="opac.detail.infos.template" name="opac.detail.infos.template" rows="15" cols="100">[%c.opac.detail.infos.template %]</textarea></pre>
+   </li>
+  </ol>
+ </fieldset>
+
+ <fieldset class="rows">
+  <legend>OPAC / Résultat </legend>
+  <ol>
+   <li>
+    <label for="opac.result.enabled">Activer : </label>
+    <input id="opac.result.enabled" type="checkbox" name="opac.result.enabled" size="15"
+           value="1" [% IF c.opac.result.enabled == 1 %]checked[% END %] />
+    l'affichage d'informations Electre
+   </li>
+   <li>
+    <label for="opac.result.cover.enabled">Activer : </label>
+    <input id="opac.result.cover.enabled" type="checkbox" name="opac.result.cover.enabled" size="15"
+           value="1" [% IF c.opac.result.cover.enabled == 1 %]checked[% END %] />
+    les images de couverture
+   </li>
+   <li>
+    <label for="opac.result.cover.image">Couverture : </label>
+    <input type="radio" id="opac.result.cover.image.vignette" name="opac.result.cover.image"
+           value="imagetteCouverture" [% IF c.opac.result.cover.image == 'imagetteCouverture' %]checked[% END %] />
+    Vignette
+    <input type="radio" id="opac.result.cover.image.grande" name="opac.result.cover.image"
+           value="imageCouverture" [% IF c.opac.result.cover.image == 'imageCouverture' %]checked[% END %] />
+    Grande
+   </li>
+  </ol>
+ </fieldset>
+
+ <fieldset class="action">
+  <input type="hidden" name="save" value="1" />
+  <input type="submit" value="Enregistrer" />
+ </fieldset>
+
+</form>
+
+[% INCLUDE "$PLUGIN_DIR/foot.tt" %]

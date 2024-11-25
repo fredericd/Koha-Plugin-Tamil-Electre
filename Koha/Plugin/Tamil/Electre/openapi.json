@@ -1,0 +1,68 @@
+{
+  "/notices": {
+    "get": {
+      "x-mojo-to": "Tamil::Electre::Controller#notices",
+      "operationId": "getNotices",
+      "tags": [
+        "Tamil",
+        "Electre"
+      ],
+      "parameters": [
+        {
+          "name": "isbn",
+          "in": "query",
+          "description": "un ou plusieurs ISSN-10 ou ISBN-13 séparés par des virgules",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "200": {
+          "description": "Liste des infos Electre par isbn",
+          "schema": {
+            "type": "object"
+          }
+        },
+        "404": {
+          "description": "ISBN non trouvé",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "description": "Error message",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "500": {
+          "description": "Internal error",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "description": "Error message",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "503": {
+          "description": "Under maintenance",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "description": "Error message",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
