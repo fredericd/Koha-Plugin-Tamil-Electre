@@ -25,10 +25,11 @@ function pageOpacDetail() {
         if (cod.cover.enabled) {
           const url = info.electre[cod.cover.image];
           const target = targetByIsbn[isbn];
+          const style = cod.cover.maxwidth ? `style="max-width: ${cod.cover.maxwidth}px;"` : '';
           target.html(`
             <div class="cover-image" id="electre-bookcoverimg" style="display: block;">
               <a href="${url}" title="Image de couverture d'Electre">
-                <img alt="Image de couverture d'Electre" src="${url}">
+                <img alt="Image de couverture d'Electre" src="${url}" ${style}>
               </a>
               <div class="hint">Image d'Electre</div>
             </div>

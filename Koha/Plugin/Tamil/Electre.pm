@@ -39,6 +39,10 @@ my $conf = {
 
 my $DEFAULT_OPAC_TEMPLATE = <<EOS;
 <style>
+  #electre-infos {
+    border: 1px solid;
+    padding: 10px;
+  }
   #electre-toc span {
     margin-left: 4px;
     font-size: 80%;
@@ -46,24 +50,29 @@ my $DEFAULT_OPAC_TEMPLATE = <<EOS;
   }
   #electre-infos h1 {
     font-transform: uppercase;
-    color: red;
+    font-size: 120%;
+    color: grey;
   }
 </style>
 <div id="electre-infos">
+  <div id="electre-branding">
+    <img src="https://accueil.electre.com/favicon-32x32.png" />
+    Electre
+  </div>
   [% IF electre.biographie %]
-    <div id="electre-biography">
-      <h1>Biographies</h1>
+    <div id="electre-biographie">
+      <h1>Biographie</h1>
       <div>[% electre.biographie %]</div>
     </div>
   [% END %]
   [% IF electre.quatriemeDeCouverture %]
-    <div id="electre-backcover">
+    <div id="electre-quatriemeDeCouverture">
       <h1>Quatrième de couverture</h1>
       <div>[% electre.quatriemeDeCouverture %]</div>
     </div>
   [% END %]
   [% IF electre.extrait %]
-    <div id="electre-extract">
+    <div id="electre-extrait">
       <h1>Extrait fourni par l'éditeur</h1>
       <div>
         <a href="[% electre.extrait.extraitUrl %]">Télécharger [% electre.extrait.extraitFormat %]</a>
@@ -71,7 +80,7 @@ my $DEFAULT_OPAC_TEMPLATE = <<EOS;
     </div>
   [% END %]
   [% IF electre.tableDesMatieres %]
-    <div id="electre-toc">
+    <div id="electre-tableDesMatieres">
       <h1>Table des matières</h1>
       <div>[% electre.tableDesMatieres %]</div>
     </div>
@@ -142,6 +151,7 @@ sub get_form_config {
                 cover => {
 					enabled => undef,
                     image => undef,
+                    maxwidth => undef,
 				},
                 infos => {
                     enabled => undef,

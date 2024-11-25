@@ -72,7 +72,10 @@
     <input type="radio" id="opac.detail.cover.image.grande" name="opac.detail.cover.image"
            value="imageCouverture" [% IF c.opac.detail.cover.image == 'imageCouverture' %]checked[% END %] />
     Grande
-
+   </li>
+   <li>
+    <label for="opac.detail.cover.maxwidth">Largeur max en px : </label>
+    <input id="opac.detail.cover.maxwidth" type="input" name="opac.detail.cover.maxwidth" size="50" value="[% c.opac.detail.cover.maxwidth %]" />
    </li>
    <li>
     <label for="opac.detail.infos.enabled">Activer : </label>
