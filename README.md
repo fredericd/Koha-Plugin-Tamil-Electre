@@ -20,10 +20,10 @@ biographie de l'auteur ou la quatrième de couverture.
 
 **Authentification** — L'accès à l'API Electre NG nécessite un abonnement à ce
 service. Un _nom d'utilisateur_ et un _mot de passe_ sont fournis par Electre.
-C'est ce qui permmet une authentification de type [OAuth
+C'est ce qui permet une authentification de type [OAuth
 2.0](https://fr.wikipedia.org/wiki/OAuth) à l'API Electre NG.
 
-**Information** — Les principales informations renvoyées sont les suivantes :
+**Informations** — Les principales informations renvoyées sont les suivantes :
 
 - Les URL de la couverture :
   - imageCouverture
