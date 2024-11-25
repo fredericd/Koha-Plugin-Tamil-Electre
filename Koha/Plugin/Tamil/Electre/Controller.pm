@@ -24,7 +24,7 @@ sub notices {
     my $expiry = $pc->{cache}->{expiry};
     if ($use_cache) {
         # On cherche les infos pour chaque ean
-        $logger->debug('Examen du cache');
+        $logger->debug('Recherche des EAN dans le cache');
         for my $isbn_raw (keys %isbn) {
             if (my $notice = $cache->get_from_cache("tamelec-$isbn_raw")) {
                 $logger->debug("Trouvé dans le cache: $isbn_raw");
@@ -34,6 +34,7 @@ sub notices {
     }
 
     # Y a-t-il des ean qui étaient absents du cache ?
+    my $notice_notfound = { notfound => 1 };
     my %ean_to_isbn;
     my @isbn_tosearch = grep { ! $isbn{$_} } keys %isbn;
     $logger->debug("EAN absents du cache: " . join(',', @isbn_tosearch))
@@ -51,39 +52,36 @@ sub notices {
             $ean_to_isbn{$ean} = $isbn_raw;
         }
         else {
-            my $notice = { notfound => 1 };
-            $isbn{$isbn_raw} = $notice;
+            $isbn{$isbn_raw} = $notice_notfound;
             if ($use_cache) {
                 $logger->debug("EAN invalide mis en cache: $isbn_raw");
-                $cache->set_in_cache("tamelec-$isbn_raw", $notice, { expiry => $expiry });
+                $cache->set_in_cache("tamelec-$isbn_raw", $notice_notfound, { expiry => $expiry });
             }
         }
     }
 
     # Y a-t-il des ean à rechercher chez Electre ?
     if (my @eans = keys %ean_to_isbn) {
-        $logger->debug('Recherche dans Electre des EAN: ' . join(',', @eans));
-
         # Appel webservice Electre
+        $logger->debug('Recherche dans Electre des EAN: ' . join(',', @eans));
         my $notice = { electre => {}, koha => {} };
-
-	    my $token_key = 'tamelec-token';
+        my $token_key = 'tamelec-token';
         my $token = $cache->get_from_cache($token_key);
-		if ($token) {
-			$logger->debug('Token Electre trouvé dans le cache');
-		}
-		else {
-			my $tx = $ua->post($pc->{api}->{login}->{url} => form => {
-				grant_type => 'password',
-				client_id  => 'api-client',
-				username   => $pc->{api}->{login}->{user},
-				password   => $pc->{api}->{login}->{password},
-			});
-			my $res = $tx->res->json;
-			$token = $res->{token_type} . ' ' . $res->{access_token};
-			my $expiry = $res->{expires_in} - 10;
-			$logger->debug("Token Electre obtenu et mis en cache pour $expiry");
-			$cache->set_in_cache($token_key, $token, { expiry => $expiry });
+        if ($token) {
+            $logger->debug('Token Electre trouvé dans le cache');
+        }
+        else {
+            my $tx = $ua->post($pc->{api}->{login}->{url} => form => {
+                grant_type => 'password',
+                client_id  => 'api-client',
+                username   => $pc->{api}->{login}->{user},
+                password   => $pc->{api}->{login}->{password},
+            });
+            my $res = $tx->res->json;
+            $token = $res->{token_type} . ' ' . $res->{access_token};
+            my $expiry = $res->{expires_in} - 10;
+            $logger->debug("Token Electre obtenu et mis en cache pour $expiry");
+            $cache->set_in_cache($token_key, $token, { expiry => $expiry });
         }
         if ($token) {
             my $url = $pc->{api}->{url} . '/notices/eans?' . join('&', map { "ean=$_" } @eans);
@@ -103,14 +101,14 @@ sub notices {
                         $isbn =~ s/-//g;
                         if (my $id = $ean_to_isbn{$isbn}) {
                             $logger->debug("Résultat, trouvé isbn $id / ean $isbn");
-                            my $tt = Template->new();
-                            my $template = $pc->{opac}->{detail}->{infos}->{template};
                             my $html = '';
                             my @info_fields = (
                                 'biographie', 'quatriemeDeCouverture', 'tableDesMatieres',
                                 'passagesMedia', 'bandesAnnonces', 'extrait',
                             );
                             if (grep { ! $not->{$_} == undef } @info_fields) {
+                                my $tt = Template->new();
+                                my $template = $pc->{opac}->{detail}->{infos}->{template};
                                 $tt->process(\$template, { electre => $not, conf => $pc }, \$html)
                                     or $html = "Mauvais template : " . $template->error();
                             }
@@ -119,9 +117,8 @@ sub notices {
                                 koha => { opac => { info => $html } },
                             };
                             $isbn{$id} = $notice;
-                            if ($use_cache) {
-                                $cache->set_in_cache("tamelec-$id", $notice, { expiry => $expiry });
-                            }
+                            $cache->set_in_cache("tamelec-$id", $notice, { expiry => $expiry })
+                                if $use_cache;
                             last;
                         }
                     }
@@ -129,8 +126,7 @@ sub notices {
             }
         }
         else {
-            # Impossible d'obtenir un token
-            # Pb user/password ?
+            # Impossible d'obtenir un token. Pb user/password ?
             $logger->warning("Impossible d'obtenir un token pour les services web Electre");
         }
     }
@@ -138,9 +134,8 @@ sub notices {
     # Les derniers ISBN non trouvés
     for my $id (keys %isbn) {
         next if $isbn{$id};
-        my $notice = { notfound => 1 };
-        $isbn{$id} = $notice;
-        $cache->set_in_cache("tamelec-$id", $notice, { expiry => $expiry })
+        $isbn{$id} = $notice_notfound;
+        $cache->set_in_cache("tamelec-$id", $notice_notfound, { expiry => $expiry })
     }
 
     $c->render(

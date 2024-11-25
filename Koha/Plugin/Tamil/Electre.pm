@@ -159,10 +159,10 @@ sub get_form_config {
             detail => {
                 enabled => undef,
                 cover => {
-					enabled => undef,
+                    enabled => undef,
                     image => undef,
                     maxwidth => undef,
-				},
+                },
                 infos => {
                     enabled => undef,
                     template => undef,
