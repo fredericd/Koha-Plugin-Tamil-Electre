@@ -12,11 +12,11 @@
 }
 </style>
 <div class="row">
- <div class="col-md-6 markdown">
+ <div class="col-md-8 markdown">
   [% markdown %]
  </div>
 </div>
-<div class="col-md-6">
+<div class="col-md-4">
 </div>
 
 [% INCLUDE "$PLUGIN_DIR/foot.tt" %]

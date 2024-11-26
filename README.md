@@ -105,8 +105,29 @@ qui renvoie un hash des ISBN :
 
 ## Configuration
 
-Dans les Outils de plugins, vous voyez l'Extension *Tamil Electre*. Cliquez sur
-Actions > Configurer.
+Dans les Outils de plugins, vous voyez le plugin *Tamil Electre*. Cliquez sur
+Actions > Configurer. La page de configuration est divisée en quatre sections.
+
+**API Electre NG** — Contient les informations de connexion à l'API d'Electre :
+point d'entrée des services web, de l'authentification OAuth 2, les nom
+d'utilisateur et mot de passe.
+
+**Cache du plugin** — Afin de ne pas surcharger les serveurs d'Electre, le
+plugin peut être paramétré pour mettre en cache les informations Electre. En
+phase de test du plugin, on peut avoir intérêt à désactiver le cache : on verra
+immédiatement le résultat des modifications apportées au template (voir plus
+bas).
+
+**OPAC / Détail** — Contrôle l'affichage des informations Electre sur la page
+de détail de l'OPAC, image de couverture et informations textuelles. Pour les
+textes, leur affichage est contrôlé par un _template_. Ces informations sont
+affichées entre le pavé de la notice bibliographique et la table des
+exemplaires. Le template utilise la syntaxe [Template
+Toolkit](https://template-toolkit.org), la même qui est utilisée dans les
+notifications Koha.
+
+**OPAC / Résultat** - Contrôle l'affichage des couvertures Electre sur la page
+de résultat de l'OPAC.
 
 ## Installation
 

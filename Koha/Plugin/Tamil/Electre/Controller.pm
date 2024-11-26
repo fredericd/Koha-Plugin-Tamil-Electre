@@ -71,11 +71,12 @@ sub notices {
             $logger->debug('Token Electre trouvé dans le cache');
         }
         else {
-            my $tx = $ua->post($pc->{api}->{login}->{url} => form => {
+            my $login = $pc->{api}->{login};
+            my $tx = $ua->post($login->{url} => form => {
                 grant_type => 'password',
                 client_id  => 'api-client',
-                username   => $pc->{api}->{login}->{user},
-                password   => $pc->{api}->{login}->{password},
+                username   => $login->{user},
+                password   => $login->{password},
             });
             my $res = $tx->res->json;
             $token = $res->{token_type} . ' ' . $res->{access_token};
