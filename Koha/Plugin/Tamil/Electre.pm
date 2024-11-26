@@ -4,21 +4,14 @@ use Modern::Perl;
 use utf8;
 use base qw(Koha::Plugins::Base);
 use CGI qw(-utf8);
-use C4::Context;
-use C4::Biblio;
 use Koha::Cache;
 use Mojo::UserAgent;
 use Mojo::JSON qw(decode_json encode_json);
-use Template;
 use Encode qw/ decode /;
-use MARC::Moose::Record;
-use YAML;
 use JSON qw/ to_json /;
-use Try::Tiny;
 use Pithub::Markdown;
 
 
-## Here is our metadata, some keys are required, some are optional
 our $metadata = {
     name            => 'Tamil Electre',
     description     => 'Intégration Electre à Koha',
@@ -29,11 +22,6 @@ our $metadata = {
     maximum_version => undef,
     copyright       => '2024',
     version         => '1.0.1',
-};
-
-
-my $conf = {
-
 };
 
 
@@ -54,8 +42,7 @@ my $DEFAULT_OPAC_TEMPLATE = <<EOS;
 </style>
 <div id="electre-infos">
   <div id="electre-branding">
-    <img src="https://accueil.electre.com/favicon-32x32.png" />
-    Electre
+    <img src="https://www.electre.com/img/login/logo-electre.svg" style="max-width: 130px;" />
   </div>
   [% IF electre.biographie %]
     <div id="electre-biographie">
@@ -110,6 +97,7 @@ sub new {
     $class->SUPER::new($args);
 }
 
+
 sub config {
     my $self = shift;
 
@@ -138,6 +126,7 @@ sub config {
 
     return $c;
 }
+
 
 sub get_form_config {
     my $cgi = shift;
@@ -198,6 +187,7 @@ sub get_form_config {
     return $c;
 }
 
+
 sub configure {
     my ($self, $args) = @_;
     my $cgi = $self->{'cgi'};
@@ -214,6 +204,7 @@ sub configure {
         $self->output_html( $template->output() );
     }
 }
+
 
 sub tool {
     my ($self, $args) = @_;
@@ -250,6 +241,7 @@ sub tool {
     $self->output_html( $template->output() );
 }
 
+
 sub opac_js {
     my $self = shift;
     my $js_file = $self->get_plugin_http_path() . "/electre.js";
@@ -264,13 +256,13 @@ sub opac_js {
     });
 </script>
 EOS
-
 }
 
 
 sub api_namespace {
     return 'tamelec';
 }
+
 
 sub api_routes {
     my $self = shift;
@@ -279,9 +271,11 @@ sub api_routes {
     return $spec;
 }
 
+
 sub install() {
     my ($self, $args) = @_;
 }
+
 
 sub upgrade {
     my ($self, $args) = @_;
@@ -292,9 +286,9 @@ sub upgrade {
     return 1;
 }
 
+
 sub uninstall() {
     my ($self, $args) = @_;
 }
-
 
 1;

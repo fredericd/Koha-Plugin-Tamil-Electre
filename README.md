@@ -147,6 +147,9 @@ Dans l'interface pro de Koha, allez dans `Outils > Outils de Plugins`. Cliquez
 sur Télécharger un plugin. Choisissez l'archive **téléchargée** à l'étape
 précédente. Cliquez sur Télécharger.
 
+Le plugin utilise par ailleurs un module Perl qu'on ne trouve pas en standard
+avec Koha : `Pithub::Markdown`. il faut l'installer sur votre serveur Koha.
+
 ## VERSIONS
 
 * **1.0.1** / novembre 2024 — Version initiale
