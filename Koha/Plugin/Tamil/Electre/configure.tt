@@ -114,6 +114,10 @@
            value="imageCouverture" [% IF c.opac.result.cover.image == 'imageCouverture' %]checked[% END %] />
     Grande
    </li>
+   <li>
+    <label for="opac.result.cover.maxwidth">Largeur max en px : </label>
+    <input id="opac.result.cover.maxwidth" type="input" name="opac.result.cover.maxwidth" size="50" value="[% c.opac.result.cover.maxwidth %]" />
+   </li>
   </ol>
  </fieldset>
 

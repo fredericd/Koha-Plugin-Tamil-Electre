@@ -162,6 +162,7 @@ sub get_form_config {
                 cover => {
                     enabled => undef,
                     image => undef,
+                    maxwidth => undef,
                 },
             },
         },

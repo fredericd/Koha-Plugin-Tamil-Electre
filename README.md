@@ -1,9 +1,9 @@
 # Plugin Tamil Electre
 
-Le plugin Koha Tamil Electre permet d'exploiter dans Koha les services web
-d'<a href="https://www.electre.com">Electre</a>.  Le plugin affiche à l'OPAC,
-sur la page résultat et sur la page de détail, des informations obtenues chez
-Electre, image de couverture, quatrième de couverture, etc.
+Le plugin Koha **_Tamil Electre_** permet d'exploiter dans Koha les services
+web de <a href="https://www.electre.com">Electre</a>.  Le plugin affiche à
+l'OPAC, sur la page résultat et sur la page de détail, des informations
+obtenues chez Electre, image de couverture, quatrième de couverture, etc.
 
 ## API Electre NG
 
@@ -13,10 +13,10 @@ précisément, un sous-ensemble de cette API qui s'appelle [Râteau
 Et plus précisément encore, le service web
 [GET-Notices-by-multiple-EAN](https://docs.electre-ng.com/1.19.0/electre-API-rateau-00-v1.19.0.html#get-notices-by-multiple-ean).
 
-Ce service web permet d'obtenir les informations Electre relatives à des
-ressources identifiées par leur EAN. Ces infos comprennent des images de
-couverture, mais aussi des informations descriptives comme la
-biographie de l'auteur ou la quatrième de couverture.
+Ce service web exploite les informations Electre relatives à des ressources
+identifiées par leur EAN. Ces infos comprennent des images de couverture, mais
+aussi des informations descriptives comme la biographie de l'auteur ou la
+quatrième de couverture.
 
 **Authentification** — L'accès à l'API Electre NG nécessite un abonnement à ce
 service. Un _nom d'utilisateur_ et un _mot de passe_ sont fournis par Electre.
@@ -36,9 +36,12 @@ C'est ce qui permet une authentification de type [OAuth
   - bandesAnnonces
   - extrait
 
-**Service web du plugin** — Le Plugin Electre expose et utilise un service web
-intermédiaire qui présente une version mise en cache sur le serveur Koha des
-informations obtenues de l'API Electre NG et construites à partir de celles-ci.
+**Service web du plugin** — Le Plugin **_Tamil Electre_** expose et utilise un
+service web intermédiaire qui présente une version mise en cache sur le serveur
+Koha des informations obtenues de l'API Electre NG et construites à partir de
+celles-ci. Ce service web intermédiaire a aussi pour fonction de transformer
+les éventuels ISBN-10 en ISBN-13 avant d'interroger l'API Electre NG qui
+accepte uniquement des EAN (= ISBN-13).
 
 Exemple pour retrouver trois ISBN :
 
@@ -105,12 +108,12 @@ qui renvoie un hash des ISBN :
 
 ## Configuration
 
-Dans les Outils de plugins, vous voyez le plugin *Tamil Electre*. Cliquez sur
+Dans les Outils de plugins, vous voyez le plugin **_Tamil Electre_**. Cliquez sur
 Actions > Configurer. La page de configuration est divisée en quatre sections.
 
 **API Electre NG** — Contient les informations de connexion à l'API d'Electre :
-point d'entrée des services web, de l'authentification OAuth 2, les nom
-d'utilisateur et mot de passe.
+point d'entrée des services web, de l'authentification OAuth 2, le nom
+d'utilisateur et le mot de passe.
 
 **Cache du plugin** — Afin de ne pas surcharger les serveurs d'Electre, le
 plugin peut être paramétré pour mettre en cache les informations Electre. En
@@ -124,7 +127,9 @@ textes, leur affichage est contrôlé par un _template_. Ces informations sont
 affichées entre le pavé de la notice bibliographique et la table des
 exemplaires. Le template utilise la syntaxe [Template
 Toolkit](https://template-toolkit.org), la même qui est utilisée dans les
-notifications Koha.
+notifications Koha. Le template transforme les infos Electre en HTML. Ce code
+HTML est placé dans la structure de données qui est mise en cache pour chaque
+ISBN. Voir plus haut le service web intermédiaire du plugin : `koha.opac.info`.
 
 **OPAC / Résultat** - Contrôle l'affichage des couvertures Electre sur la page
 de résultat de l'OPAC.

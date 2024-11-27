@@ -54,8 +54,9 @@ function pageOpacResult() {
   const cor = c.opac.result;
   populate('.cover-slides', function(info, target) {
     const url = info.electre[cor.cover.image];
+    const style = cor.cover.maxwidth ? `style="max-width: ${cor.cover.maxwidth}px;"` : '';
     target.html(`
-      <img src="${url}" alt="" class="item-thumbnail" />
+      <img src="${url}" alt="" class="item-thumbnail" ${style} />
     `);
   });
 }
