@@ -111,7 +111,7 @@ sub notices {
                                 my $tt = Template->new();
                                 my $template = $pc->{opac}->{detail}->{infos}->{template};
                                 $tt->process(\$template, { electre => $not, conf => $pc }, \$html)
-                                    or $html = "Mauvais template : " . $template->error();
+                                    or $html = "Mauvais template : " . $tt->error();
                             }
                             my $notice = {
                                 electre => $not,

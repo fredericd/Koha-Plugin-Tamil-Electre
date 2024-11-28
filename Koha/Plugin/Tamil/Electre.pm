@@ -14,6 +14,7 @@ use Pithub::Markdown;
 
 our $metadata = {
     name            => 'Tamil Electre',
+    canonicalname   => 'koha-plugin-tamil-electre',
     description     => 'Intégration Electre à Koha',
     author          => 'Tamil s.a.r.l.',
     date_authored   => '2024-11-25',
@@ -41,9 +42,11 @@ my $DEFAULT_OPAC_TEMPLATE = <<EOS;
   }
 </style>
 <div id="electre-infos">
-  <div id="electre-branding">
-    <img src="https://www.electre.com/img/login/logo-electre.svg" style="max-width: 130px;" />
-  </div>
+  [% IF conf.opac.detail.infos.branding == 1 %]
+    <div id="electre-branding">
+      <img src="https://www.electre.com/img/login/logo-electre.svg" style="max-width: 130px;" />
+    </div>
+  [% END %]
   [% IF electre.biographie %]
     <div id="electre-biographie">
       <h1>Biographie</h1>
@@ -151,10 +154,12 @@ sub get_form_config {
                     enabled => undef,
                     image => undef,
                     maxwidth => undef,
+                    branding => undef,
                 },
                 infos => {
                     enabled => undef,
                     template => undef,
+                    branding => undef,
                 }
             },
             result => {

@@ -78,6 +78,12 @@
     <input id="opac.detail.cover.maxwidth" type="input" name="opac.detail.cover.maxwidth" size="50" value="[% c.opac.detail.cover.maxwidth %]" />
    </li>
    <li>
+    <label for="opac.detail.cover.branding">Activer : </label>
+    <input id="opac.detail.cover.branding" type="checkbox" name="opac.detail.cover.branding" size="15"
+           value="1" [% IF c.opac.detail.cover.branding == 1 %]checked[% END %] />
+    l'affichage de l'origine Electre de l'image
+   </li>
+   <li>
     <label for="opac.detail.infos.enabled">Activer : </label>
     <input id="opac.detail.infos.enabled" type="checkbox" name="opac.detail.infos.enabled" size="15"
            value="1" [% IF c.opac.detail.infos.enabled == 1 %]checked[% END %] />
@@ -86,6 +92,12 @@
    <li>
     <label for="opac.detail.infos.template">Template : </label>
     <pre><textarea id="opac.detail.infos.template" name="opac.detail.infos.template" rows="15" cols="100">[%c.opac.detail.infos.template %]</textarea></pre>
+   </li>
+   <li>
+    <label for="opac.detail.infos.branding">Activer : </label>
+    <input id="opac.detail.infos.branding" type="checkbox" name="opac.detail.infos.branding" size="15"
+           value="1" [% IF c.opac.detail.infos.branding == 1 %]checked[% END %] />
+    l'affichage de l'origine Electre des informations
    </li>
   </ol>
  </fieldset>
