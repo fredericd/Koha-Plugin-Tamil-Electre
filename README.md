@@ -56,7 +56,7 @@ qui renvoie un hash des ISBN :
     "2748905490": {
         "electre": {
             "bandesAnnonces": null,
-            "biographie": "<p>Historienne à l'université de Picardie Jules Verne (CAREF), Mélanie Fabre travaille sur l'éducation, les femmes et le genre, ainsi que sur la gauche à l'époque contemporaine.</p>",
+            "biographie": "<p>Historienne à l'université de Picardie Jules...",
             "catalogue": "Livre",
             "dateLiberationEmbargo": null,
             "dateMiseAJour": "2024-03-05 20:00:00.0",
@@ -70,8 +70,8 @@ qui renvoie un hash des ISBN :
             ],
             "eansUtilises": [],
             "extrait": null,
-            "imageCouverture": "https://media.electre-ng.com/images/image-id/51f2e9420931d76ea199ea097c30a5ec045d825e688938f42ea12fc8a4b78db7.jpg",
-            "imagetteCouverture": "https://media.electre-ng.com/imagettes/image-id/51f2e9420931d76ea199ea097c30a5ec045d825e688938f42ea12fc8a4b78db7.jpg",
+            "imageCouverture": "https://media.electre-ng.com/images/image-id/a4b78db7.jpg",
+            "imagetteCouverture": "https://media.electre-ng.com/imagettes/image-id/fc8a4b78db7.jpg",
             "isbns": [
                 "9782748905496"
             ],
@@ -90,7 +90,20 @@ qui renvoie un hash des ISBN :
         },
         "koha": {
             "opac": {
-                "info": "<style>\r\n  #electre-toc span {\r\n    margin-left: 4px;\r\n    font-size: 80%;\r\n    font-style: italic;\r\n  }\r\n  #electre-infos h1 {\r\n    font-transform: uppercase;\r\n    color: red;\r\n  }\r\n</style>\r\n<div id=\"electre-infos\">\r\n  \r\n    <div id=\"electre-biography\">\r\n      <h1>Biographies</h1>\r\n      <div><p>Historienne à l'université de Picardie Jules Verne (CAREF), Mélanie Fabre travaille sur l'éducation, les femmes et le genre, ainsi que sur la gauche à l'époque contemporaine.</p></div>\r\n    </div>\r\n  \r\n  \r\n    <div id=\"electre-backcover\">\r\n      <h1>Quatrième de couverture</h1>\r\n      <div><p>« Pour Pauline Kergomard, la crise de l'affaire </p></div>\r\n    </div>\r\n  \r\n  \r\n  \r\n</div>\r\n"
+                "info": "<style>\r\n  #electre-toc span {\r\n    margin-left:
+                4px;\r\n    font-size: 80%;\r\n    font-style: italic;\r\n
+                }\r\n  #electre-infos h1 {\r\n    font-transform:
+                uppercase;\r\n    color: red;\r\n  }\r\n</style>\r\n<div
+                id=\"electre-infos\">\r\n  \r\n    <div
+                id=\"electre-biography\">\r\n      <h1>Biographies</h1>\r\n
+                <div><p>Historienne à l'université de Picardie Jules Verne
+                (CAREF), Mélanie Fabre travaille sur l'éducation, les femmes et
+                le genre, ainsi que sur la gauche à l'époque
+                contemporaine.</p></div>\r\n    </div>\r\n  \r\n  \r\n    <div
+                id=\"electre-backcover\">\r\n      <h1>Quatrième de
+                couverture</h1>\r\n      <div><p>« Pour Pauline Kergomard, la
+                crise de l'affaire </p></div>\r\n    </div>\r\n  \r\n  \r\n
+                \r\n</div>\r\n"
             }
         }
     },
